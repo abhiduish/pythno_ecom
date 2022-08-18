@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    {% if otp %}
+    <form method="post">
+        {% csrf_token %}
+            <input type="hidden" name="usr" value="{{usr.username}}">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">OTP</span>
+              </div>
+              <input type="text" class="form-control" placeholder="Enter Your OTP" aria-label="OTP" aria-describedby="basic-addon1" name = 'otp'>
+            </div>
+            
+        </fieldset>
+        <div class="form-grounp">
+            <button class="btn mainbtn" type="submit">Verify</button>
+            <small class="float-right text-muted"><i><a href="#" class="text-dark" 
+              onclick="ReSendOTP('{{usr.username}}', 'resendOTPmess')"><i id="resendOTPmess">Resend</i> OTP</a></small>
+    </form>
+    {% else %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}</br>
+        <input type="submit" value="Submit">
+    </form>
+    {% endif %}
+   
+</body>
+</html>
